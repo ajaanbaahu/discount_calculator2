@@ -23,3 +23,27 @@ class DiscountCalculatorTests(unittest.TestCase):
         discount_calc=DiscountCalculator()
 
         self.assertRaises(ValueError,discount_calc.calculate,250,5,'random')
+
+    def floating_point_percent_test(self):
+
+        discount_calculator=DiscountCalculator()
+        result=discount_calculator.calculate(100.0,10.0, 'percent')
+        self.assertEqual(10.0,result)
+
+
+    def floating_point_absolute_test(self):
+
+        discount_calculator=DiscountCalculator()
+
+        result=discount_calculator.calculate(250.0,5.0,'absolute')
+
+        self.assertEqual(6.0,result)
+
+    def excess_discount_test(self):
+
+        discount_calculator=DiscountCalculator()
+        #result=discount_calculator.calculate(100.0,110.0, 'percent')
+
+        self.assertRaises(ValueError,discount_calculator.calculate,250,100,'percent')
+
+
